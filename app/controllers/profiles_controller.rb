@@ -23,6 +23,16 @@ class ProfilesController < ApplicationController
         redirect_to(root_url) unless @user == current_user
     end
 
+    def share
+        @profile = Profile.find_by(user_id: params[:id]);
+        if @profile
+            render('users/profile')
+        else
+            flash[:error] = "Profile not found."
+            redirect_to root_url
+        end
+    end
+
     private
         def profile_params
             params.require(:profile).permit(:name, :avatar, :job_title, :total_experience, :overview, 
