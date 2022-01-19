@@ -39,7 +39,26 @@
                 <%= render 'shared/input/education', education: education %>
             <% end %><br />
             <%= render 'shared/input/buttons/add', label: "+ Add Education", path: "/educations/new" %>
+            
         <% end %>
+
+        <%= render 'shared/edit_section', title: "Experiences" do %>
+            <%= f.fields_for :experiences do |experience| %>
+                <%= render 'shared/input/experience', experience: experience %>
+            <br />
+
+                <%= render 'shared/edit_section', title: "Projects" do %>
+                    <%= experience.fields_for :projects do |project|%>
+                        <%= render 'shared/input/project', project: project%>
+                    <% end %>
+                    <%= render 'shared/input/buttons/add', label: "+ Add Project", path: new_project_path(experience.object.id) %>
+                <% end %>
+
+            <% end %>
+            <%= render 'shared/input/buttons/add', label: "+ Add Experience", path: "/experiences/new" %>
+        <% end %>
+
+        
         
     <% end %>
 
