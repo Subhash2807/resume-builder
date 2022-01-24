@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def edit
     logged_in_user
     if current_user
-        @profile = current_user.profile
+      @profile = current_user.profile
     end
   end
 

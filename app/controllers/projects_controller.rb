@@ -6,14 +6,10 @@ class ProjectsController < ApplicationController
     before_action :correct_user,   only: [:update]
 
     def new
-        id = params[:format]
-        if Project.create(experience_id: id)
-            flash[:success] = "New Project Added."
-            redirect_to edit_url
-        else
-            flash[:error] = experience.errors.messages[0];
-            redirect_to edit_url
-        end
+      id = params[:format]
+      Project.create(experience_id: id)
+      flash[:success] = "New Project Added."
+      redirect_to edit_url
     end
 
     def update
